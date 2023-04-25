@@ -8,7 +8,10 @@ This project is a direct conversion to JavaScript of the QCSim written in Python
     Clone the repository
     Open index.html with any browser
   
-  
+# Live Demo 
+
+https://ciiec.buap.mx/QCSim
+
 
 # Brief description
 
