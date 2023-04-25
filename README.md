@@ -90,24 +90,25 @@ The code
     h q[0:2];
     
 produces
-	Number of Qubits = 3
-	Scanning .....
-	 Hadamard gate applied to qubit 0
-	  resulted in state |psi> =0.707|000> + 0.707|001> 
-	 Hadamard gate applied to qubit 1
-	  resulted in state |psi> =0.5|000> + 0.5|001> + 0.5|010> + 0.5|011> 
-	 X gate applied to qubit 2
-	  resulted in state |psi> =0.5|100> + 0.5|101> + 0.5|110> + 0.5|111> 
-	 CX gate applied to control qubit 1 and target qubit 2
-	  resulted in state |psi> =0.5|010> + 0.5|011> + 0.5|100> + 0.5|101> 
-	 CX gate applied to control qubit 0 and target qubit 2
-	  resulted in state |psi> =0.5|001> + 0.5|010> + 0.5|100> + 0.5|111> 
-	 Hadamard gate applied to qubit 0
-	  resulted in state |psi> =0.354|000> - 0.354|001> + 0.354|010> + 0.354|011> + 0.354|100> + 0.354|101> + 0.354|110> - 0.354|111> 
-	 Hadamard gate applied to qubit 1
-	  resulted in state |psi> =0.5|000> - 0.5|011> + 0.5|100> + 0.5|111> 
-	 Hadamard gate applied to qubit 2
-	  resulted in state |psi> =0.707|000> - 0.707|111> 
 
-	Final State |psi> =0.707|000> - 0.707|111> 
+    Number of Qubits = 3
+     Scanning .....
+     Hadamard gate applied to qubit 0
+      resulted in state |psi> =0.707|000> + 0.707|001> 
+     Hadamard gate applied to qubit 1
+      resulted in state |psi> =0.5|000> + 0.5|001> + 0.5|010> + 0.5|011> 
+     X gate applied to qubit 2
+      resulted in state |psi> =0.5|100> + 0.5|101> + 0.5|110> + 0.5|111> 
+     CX gate applied to control qubit 1 and target qubit 2
+      resulted in state |psi> =0.5|010> + 0.5|011> + 0.5|100> + 0.5|101> 
+     CX gate applied to control qubit 0 and target qubit 2
+      resulted in state |psi> =0.5|001> + 0.5|010> + 0.5|100> + 0.5|111> 
+     Hadamard gate applied to qubit 0
+      resulted in state |psi> =0.354|000> - 0.354|001> + 0.354|010> + 0.354|011> + 0.354|100> + 0.354|101> + 0.354|110> - 0.354|111> 
+     Hadamard gate applied to qubit 1
+      resulted in state |psi> =0.5|000> - 0.5|011> + 0.5|100> + 0.5|111> 
+     Hadamard gate applied to qubit 2
+      resulted in state |psi> =0.707|000> - 0.707|111> 
+
+    Final State |psi> =0.707|000> - 0.707|111> 
 
