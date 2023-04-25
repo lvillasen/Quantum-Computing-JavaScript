@@ -1,13 +1,12 @@
 # Quantum-Computing-JavaScript
 Simulator of an ideal quantum computer in JavaScript. The unitary operations are optimized with matrix-free algorithms.
-This project is a direct conversion to JavaScript of this code written in Python: https://github.com/lvillasen/Quantum-Computer-Simulator where you can find more examples.
+This project is a direct conversion to JavaScript of the QCSim written in Python: https://github.com/lvillasen/Quantum-Computer-Simulator where you can find more examples.
 
 
 # Usage 
 
-	Clone the repository
-  
-  Open index.html with any browser
+    Clone the repository
+    Open index.html with any browser
   
   
 
@@ -56,4 +55,20 @@ The initial state is
 
 As usual, qubits are ordered from right to left on the quantum states |psi>
 
-A brief tutorial on Quantum Computing (in Spanish) can be seen at https://github.com/lvillasen/Introduccion-a-la-Computacion-Cuantica
+The code
+
+    Bell state
+    verbose 1;
+    h q[0];
+    cx q[0], q[1];
+    
+    
+ produces
+ 
+    Number of Qubits = 2
+     Scanning .....
+     Hadamard gate applied to qubit 0
+     resulted in state |psi> =0.707|00> + 0.707|01> 
+     CX gate applied to control qubit 0 and target qubit 1
+     resulted in state |psi> =0.707|00> + 0.707|11> 
+    Final State |psi> =0.707|00> + 0.707|11> 
