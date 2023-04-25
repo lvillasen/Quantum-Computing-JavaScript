@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+<title>QCSim</title>
+<link rel="stylesheet" href="./qc_sim.css">
+
+<script src="https://unpkg.com/mathjs@11.8.0/lib/browser/math.js"></script>
+
+</head>
+
+
+
+
+<body>
+    
+<div class="block_container"  style="background-color: #00b5e2; margin-left:5%; margin-right:5%;">    <p> </p>
+    <p> </p>
+    <br>
+
+        <h1> Quantum Computer Simulator</h1>
+
+     
+        <h2> CIIEC-BUAP</h2>
+
+      <p style="font-size: 30px; margin-left: 80%;">April, 22th, 2023 </p>
+        <p style="font-size: 20px; margin-left: 80%;"><a href="https://github.com/lvillasen/Mandelbrot-Set/" >Source Code</a> </p>
+        
+        <hr>
+
+<p style="color:black;font-size:30px;">
+This code simulates an ideal quantum computer in JavaScript. The unitary operations are optimized with matrix-free algorithms. 
+<br><br>
+The maximum number of qubits it can handle is limited, in a natural way, by the resources available on the system used to run the program. 
+The gates and commands implemented so far are the following:
+</p>
+<br><br>
+
+
+<ul tyle="color:black;font-size:30px;">
+
+<li>verbose 0(1); verbose mode off(on) </li>
+
+<li>h q[i]; Hadamard gate H applied to qubit i </li>
+
+<li>x q[i]; X Pauli gate applied to qubit i </li>
+
+<li>y q[i]; Y Pauli gate applied to qubit i </li>
+
+<li>z q[i]; Z Pauli gate applied to qubit i </li>
+
+<li>cx q[i], q[j]; CNOT gate applied to control qubit i and target qubit j </li>
+
+<li>sign i; flips sign of states with index i in the standard basis </li>
+
+
+</ul>
+
+
+
+<p style="color:black;font-size:30px;">
+
+Command lines that do not terminate with a semicolon are treated as comments.
+<br><br>
+This project is a direct conversion to JavaScript of this <a href="https://github.com/lvillasen/Quantum-Computer-Simulator">Python code</a> where you can find more examples.
+<br><br>
+
+The code implements an automatic extension of the range of qubits for the commands X, Y, Z and H, for instance
+ </p> 
+
+
+ <pre style="background-color: lightblue; margin-left:5%; margin-right:5%;">
+    h q[0:4];
+</pre>
+  
+    
+   <p style="color:black;font-size:30px;">
+ 
+is equivalent to </p>
+
+ <pre style="background-color: lightblue; margin-left:5%; margin-right:5%;">
+    h q[0];
+    h q[1];
+    h q[2];
+    h q[3];
+    h q[4];
+</pre>
+  
+
+<p style="color:black;font-size:30px;">
+
+The initial state is 
+    |000...00>. As usual, qubits are ordered from right to left on the quantum states |psi>.
+<br><br>
+A brief tutorial on Quantum Computing (in Spanish) can be seen <a href="https://github.com/lvillasen/Introduccion-a-la-Computacion-Cuantica">here</a>.
+</p>
+<br><br>
+
+
+<h2> Examples</h2>
+
+<p style="color:black;font-size:30px;">
+
+    The code to produce the Bell state of two entangled qubits 
+|psi>=0.707|00> + 0.707|11> 
+
+
+is: </p>
+<pre style="background-color: lightblue; margin-left:5%; margin-right:5%;">
+    Bell state
+    verbose 1;
+    h q[0];
+    cx q[0], q[1];
+
+</pre>
+
+<p style="color:black;font-size:30px;">
+
+    The code to produce the GHZ state of 3 entangled qubits  
+
+    |psi>=0.707|000> - 0.707|111>
+
+is:  </p>
+<pre style="background-color: lightblue;-grey; margin-left:5%; margin-right:5%;">
+    GHZ state
+    verbose 1;
+    h q[0];
+    h q[1];
+    x q[2];
+    cx q[1], q[2];
+    cx q[0], q[2];
+    h q[0];
+    h q[1];
+    h q[2];
+</pre>
+
+<p style="color:black;font-size:30px;">
+
+    The code to search for index = 9 with <a href="https://quantum-computing.ibm.com/composer/docs/iqx/guide/grovers-algorithm">Grover's algorithm</a> is    </p>
+<pre style="background-color: lightblue;-grey; margin-left:5%; margin-right:5%;">
+    Number of states = 16
+    Search index = 9
+    Number of optimal Grover iterations = 3
+    Initial state = |00..00>
+    h q[0:3];
+    State is transformed to fully uniform
+    Iteration no: 1
+    sign 9;
+    h q[0:3];
+    sign 0;
+    h q[0:3];
+    Iteration no: 2
+    sign 9;
+    h q[0:3];
+    sign 0;
+    h q[0:3];
+    Iteration no: 3
+    sign 9;
+    h q[0:3];
+    sign 0;
+    h q[0:3];
+</pre>
+<p style="color:black;font-size:30px;">
+ The following bash script generates code to use Grover's algorith to search for a particular index with any number of qubits. </p>
+<pre style="background-color: lightblue;-grey; margin-left:5%; margin-right:5%;">
+
+    n=5 # Number of qubits
+    search_index=21 # select index to search
+    N_states=$((2 ** $n))
+    i=$(echo "((3.1416*sqrt($N_states))/4+.5)" | bc -l)
+    N_times=${i%.*}
+    echo "circuit 0 ;";
+    echo "Number of qubits = $((n))";
+    echo "Number of states = $((N_states))";
+    echo "Search index = $((search_index))";
+    echo "Number of optimal Grover iterations = $((N_times))";echo
+    echo "Initial state = |00..00>";echo
+    echo "h q[0:$((n-1))];";
+    echo "State is transformed to fully uniform";echo
+
+    for i in $(seq 1 $((N_times))); do
+        echo "Iteration no: $((i))"
+    echo "Sign $((search_index));"
+    echo "h q[0:$((n-1))];";
+    #echo "Sign 1:$N_states;"
+    echo "Sign 0;"
+    echo "h q[0:$((n-1))];";
+    done
+</pre>
+<p style="color:black;font-size:30px;">
+ To use it run just type</p>
+
+<pre style="background-color: lightblue;-grey; margin-left:5%; margin-right:5%;">
+    sh Grover.sh
+</pre>
+<p style="color:black;font-size:30px;">
+    on a Unix/Linux terminal and copy and paste the script produced.</p>
+<br><br>
+ 
+<hr>
+ 
+
+
+ <div  id="block_container" style="text-align:center;margin: 3px solid;">
+    
+<p  style="color:black;font-size:30px;"> Paste o Write Your Code Here</p>
+    <textarea id="text_area" width="600" style="border:solid 5px #003b5c;" >
+    Bell state
+    verbose 1;
+    h q[0];
+    cx q[0], q[1];
+
+    </textarea>
+</div>
+<hr>
+
+ <input  class="favorite styled" type="button" id="start_stop" value="Run" onclick="start();">
+ <div id="block_container" margin: 3px solid;">
+
+
+<textarea id="results" style= "white-space: pre; border:solid 5px #003b5c;" name="w3review" rows="20" cols="120"></textarea>
+ </div>    
+<br><br>
+</body>
+
+    <div id="my_element"  class="block_container" style="background-color: #00b5e2; width:100%;">
+        <div id="plot1" style= " border:solid 5px #003b5c; width:100%;"></div>
+    </div> 
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<script src="./qc_sim.js"></script></html>
