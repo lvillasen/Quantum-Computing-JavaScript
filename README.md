@@ -6,7 +6,7 @@ This project is a direct conversion to JavaScript of the QCSim written in Python
 # Usage 
 
     Clone the repository
-    Open index.html with any browser
+    Open the file index.html with any web browser
   
 # Live Demo 
 
