@@ -163,7 +163,7 @@ is:  </p>
     h q[0:3];
 </pre>
 <p style="color:black;font-size:30px;">
- The following bash script generates code to use Grover's algorith to search for a particular index with any number of qubits. </p>
+ The following bash script generates code to use Grover's algorithm to search for a particular index with any number of qubits. </p>
 <pre style="background-color: lightblue;-grey; margin-left:5%; margin-right:5%;">
 
     n=5 # Number of qubits
@@ -182,10 +182,10 @@ is:  </p>
 
     for i in $(seq 1 $((N_times))); do
         echo "Iteration no: $((i))"
-    echo "Sign $((search_index));"
+    echo "sign $((search_index));"
     echo "h q[0:$((n-1))];";
-    #echo "Sign 1:$N_states;"
-    echo "Sign 0;"
+    #echo "sign 1:$N_states;"
+    echo "sign 0;"
     echo "h q[0:$((n-1))];";
     done
 </pre>
